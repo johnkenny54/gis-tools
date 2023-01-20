@@ -1,5 +1,5 @@
 {
-    "name": "gis-tools",
+    "name": "@ebplants/gis-tools",
     "version": "0.1.0",
     "description": "Tools to GIS files.",
     "license": "MIT",
