@@ -3,6 +3,11 @@
     "version": "0.1.0",
     "description": "Tools to GIS files.",
     "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/johnkenny54/gis-tools.git"
+    },
+    "homepage": "https://github.com/johnkenny54/gis-tools",
     "type": "module",
     "bin": {
         "geojson-to-svg": "src/geojson-to-svg.js"
