@@ -1,7 +1,7 @@
 {
     "name": "@ebplants/gis-tools",
-    "version": "0.1.0",
-    "description": "Tools to GIS files.",
+    "version": "0.1.1",
+    "description": "Tools to read and write GIS files.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -11,6 +11,9 @@
     "type": "module",
     "bin": {
         "geojson-to-svg": "src/geojson-to-svg.js"
+    },
+    "exports": {
+        ".": "./src/index.js"
     },
     "dependencies": {
         "@mapbox/geojson-extent": "^1.0.1",
