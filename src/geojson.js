@@ -62,16 +62,12 @@ class GeoJSON {
     }
 
     /**
-     * 
-     * @param {string} filePath Path to file containing GeoJSON polygon features.
      * @param {*} fnGetCode 
      * @returns {Array}
      */
-    static getPolygonsFromFile( filePath, fnGetID ) {
-        const geoJSON = JSON.parse( fs.readFileSync( filePath ) );
-        const features = geoJSON.features;
+    getPolygonData( fnGetID ) {
         const polyData = [];
-        for ( const feature of features ) {
+        for ( const feature of this.getFeatures() ) {
             const code = fnGetID( feature );
             const coordinates = feature.geometry.coordinates;
             switch ( feature.geometry.type ) {
