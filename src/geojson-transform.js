@@ -76,6 +76,11 @@ class MapConfig {
                 }
                 return values.join( transform.value.delimiter );
             }
+            case "map": {
+                const input = this.#getTransformedPropertyValue( srcProperties, transform.value.input );
+                const value = transform.value.map[ input ];
+                return value ? value : transform.value.default;
+            }
             case "property":
                 return srcProperties[ transform.value ];
             default:
