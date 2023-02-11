@@ -14,9 +14,12 @@ class Transform {
     }
 
     transform() {
+        for ( const dirSet of this.#mapConfig.getDirectories() ) {
+            this.#transform( dirSet.input, dirSet.output );
+        }
+    }
 
-        const inputFilePath = this.#mapConfig.getInputFilePath();
-        const outputFilePath = this.#mapConfig.getOutputFilePath();
+    #transform( inputFilePath, outputFilePath ) {
 
         // Initialize output directory.
         fs.rmSync( outputFilePath, { force: true, recursive: true } );
@@ -54,12 +57,8 @@ class MapConfig {
         this.#configData = JSON.parse( fs.readFileSync( configFilePath ) );
     }
 
-    getInputFilePath() {
-        return this.#configData.inputdir;
-    }
-
-    getOutputFilePath() {
-        return this.#configData.outputdir;
+    getDirectories() {
+        return this.#configData.directories;
     }
 
     #getTransformedPropertyValue( srcProperties, transform ) {
@@ -71,7 +70,8 @@ class MapConfig {
                 for ( const value of transform.value.values ) {
                     const newValue = this.#getTransformedPropertyValue( srcProperties, value );
                     if ( newValue ) {
-                        values.push( newValue );
+                        const label = value.label;
+                        values.push( label ? ( label + newValue ) : newValue );
                     }
                 }
                 return values.join( transform.value.delimiter );
