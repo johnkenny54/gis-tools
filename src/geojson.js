@@ -62,31 +62,6 @@ class GeoJSON {
     }
 
     /**
-     * @param {*} fnGetCode 
-     * @returns {Array}
-     */
-    getPolygonData( fnGetID ) {
-        const polyData = [];
-        for ( const feature of this.getFeatures() ) {
-            const code = fnGetID( feature );
-            const coordinates = feature.geometry.coordinates;
-            switch ( feature.geometry.type ) {
-                case "MultiPolygon":
-                    for ( const polygon of coordinates ) {
-                        const bounds = geolib.getBounds( polygon );
-                        polyData.push( { code: code, bounds: bounds, polygon: polygon[ 0 ] } );
-
-                    }
-                    break;
-                default:
-                    throw new Error( "unrecognized type: " + feature.geometry.type );
-
-            }
-        }
-        return polyData;
-    }
-
-    /**
      * 
      * @param {string} filePath Full path to a GeoJSON file.
      * @returns {GeoJSON}
